@@ -30,12 +30,7 @@ const requestLogger = (request, response, next) => {
 }
 
 app.use(express.json());
-
-app.use(cors({ origin: 'http://localhost:5173' }));
-//app.use(requestLogger);
-
-morgan.token("body", (req) => JSON.stringify(req.body));
-app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'));
+app.use(requestLogger);
 
 app.get('/', (req, res) => {
     res.send('<h1>Hellowwworld...</h1>')
